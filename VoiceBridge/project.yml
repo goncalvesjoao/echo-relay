@@ -1,0 +1,53 @@
+name: VoiceBridge
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Global options
+# ─────────────────────────────────────────────────────────────────────────────
+options:
+  bundleIdPrefix: com.voicebridge
+  createIntermediateGroups: true
+  groupSortPosition: top
+  deploymentTarget:
+    macOS: "12.0"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Shared build settings
+# ─────────────────────────────────────────────────────────────────────────────
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "12.0"
+    ENABLE_HARDENED_RUNTIME: "YES"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Targets
+# ─────────────────────────────────────────────────────────────────────────────
+targets:
+  VoiceBridge:
+    type: application
+    platform: macOS
+
+    # Source files (Info.plist excluded from compilation)
+    sources:
+      - path: VoiceBridge
+        excludes:
+          - "Info.plist"
+
+    # Linked system frameworks
+    dependencies:
+      - sdk: Speech.framework
+      - sdk: AVFoundation.framework
+      - sdk: CoreGraphics.framework
+      - sdk: ApplicationServices.framework
+
+    # Build settings for this target
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.voicebridge.app
+        INFOPLIST_FILE: VoiceBridge/Info.plist
+        CODE_SIGN_ENTITLEMENTS: VoiceBridge.entitlements
+        # Use ad-hoc signing for local dev (no Apple Developer account needed)
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGNING_REQUIRED: "YES"
+        CODE_SIGNING_ALLOWED: "YES"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

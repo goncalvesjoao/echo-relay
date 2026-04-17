@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App identity -->
+    <key>CFBundleName</key>
+    <string>VoiceBridge</string>
+    <key>CFBundleDisplayName</key>
+    <string>VoiceBridge</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.voicebridge.app</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleExecutable</key>
+    <string>VoiceBridge</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+
+    <!-- Run as a background/menu-bar-only app (no dock icon) -->
+    <key>LSUIElement</key>
+    <true/>
+
+    <!-- Minimum macOS version -->
+    <key>LSMinimumSystemVersion</key>
+    <string>12.0</string>
+
+    <!-- Privacy usage descriptions (required for App Store / notarisation) -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>VoiceBridge records your microphone to transcribe speech into the focused app.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>VoiceBridge uses on-device speech recognition to convert your voice to text.</string>
+    <key>NSAccessibilityUsageDescription</key>
+    <string>VoiceBridge reads the content of the frontmost app so it can read AI responses aloud.</string>
+
+    <!-- Support Retina display -->
+    <key>NSHighResolutionCapable</key>
+    <true/>
+
+    <!-- Human Interface Guidelines: background processing -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+    </dict>
+</dict>
+</plist>
