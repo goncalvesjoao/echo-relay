@@ -94,14 +94,14 @@ final class AppMonitor {
         return parts.isEmpty ? nil : parts.joined(separator: "\n")
     }
 
+    private static let timestampPattern = #"^\d{1,2}:\d{2}(:\d{2})?( [AP]M)?$"#
+
     /// Simple heuristic: content-like text is at least 20 characters long,
     /// is not pure whitespace, and does not look like a single-word label or timestamp.
     private func isContentLike(_ text: String) -> Bool {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard trimmed.count >= 20 else { return false }
-        // Reject things that look like pure timestamps (e.g. "12:34 PM")
-        let timestampPattern = #"^\d{1,2}:\d{2}(:\d{2})?( [AP]M)?$"#
-        if trimmed.range(of: timestampPattern, options: .regularExpression) != nil { return false }
+        if trimmed.range(of: AppMonitor.timestampPattern, options: .regularExpression) != nil { return false }
         return true
     }
 

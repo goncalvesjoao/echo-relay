@@ -23,11 +23,6 @@ final class VoiceCommandRouter {
     var speechInputManager: SpeechInputManager?
     var keyboardSimulator: KeyboardSimulator?
 
-    // MARK: Configuration
-
-    /// Words that are stripped before deciding to forward as plain text.
-    private let knownCommandWords: Set<String> = Set(VoiceCommand.allCases.map { $0.rawValue })
-
     // MARK: Public API
 
     /// Called with each incremental transcript. `isFinal` marks the last segment.
@@ -52,9 +47,7 @@ final class VoiceCommandRouter {
             remaining.removeFirst()
         }
 
-        let plainText = remaining
-            .filter { !knownCommandWords.contains($0) }
-            .joined(separator: " ")
+        let plainText = remaining.joined(separator: " ")
 
         if !plainText.isEmpty {
             keyboardSimulator?.type(plainText + " ")

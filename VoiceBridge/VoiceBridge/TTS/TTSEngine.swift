@@ -17,6 +17,11 @@ final class TTSEngine: NSObject {
         didSet { onStateChange?(state) }
     }
 
+    // MARK: Configuration
+
+    /// Maximum number of past utterances to repeat with `reread()`.
+    private let rereadSentenceCount = 3
+
     // MARK: Private
 
     private let synthesizer = AVSpeechSynthesizer()
@@ -68,9 +73,9 @@ final class TTSEngine: NSObject {
         state = .idle
     }
 
-    /// Re-speaks the most recent utterances (up to the last 3 sentences).
+    /// Re-speaks the most recent utterances (up to `rereadSentenceCount` sentences).
     func reread() {
-        let toReread = lastSpokenStrings.suffix(3)
+        let toReread = lastSpokenStrings.suffix(rereadSentenceCount)
         guard !toReread.isEmpty else { return }
         stop()
         toReread.forEach { speak($0) }

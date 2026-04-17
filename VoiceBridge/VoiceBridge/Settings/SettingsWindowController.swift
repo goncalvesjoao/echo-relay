@@ -10,11 +10,11 @@ final class SettingsWindowController: NSWindowController {
 
     // MARK: Subviews
 
-    private var hotkeyField   = NSTextField()
-    private var voicePopUp    = NSPopUpButton()
-    private var rateSlider    = NSSlider()
-    private var denylistField = NSTextField()
-    private var rateLabel     = NSTextField(labelWithString: "")
+    private var hotkeyField    = NSTextField()
+    private var voicePopUp     = NSPopUpButton()
+    private var rateSlider     = NSSlider()
+    private var denylistView   = NSTextView()
+    private var rateLabel      = NSTextField(labelWithString: "")
 
     // MARK: Init
 
@@ -74,9 +74,21 @@ final class SettingsWindowController: NSWindowController {
         // ── Denylist ──────────────────────────────────────────────────────────
         addLabel("Skip Apps\n(bundle IDs,\ncomma-separated)", x: 20, y: 90, width: 140, in: content)
 
-        denylistField.frame = NSRect(x: 170, y: 92, width: 250, height: 60)
-        denylistField.isEditable = true
-        content.addSubview(denylistField)
+        let scrollView = NSScrollView(frame: NSRect(x: 170, y: 92, width: 250, height: 60))
+        scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
+        scrollView.autohidesScrollers = true
+        scrollView.borderType = .bezelBorder
+
+        denylistView.frame = NSRect(x: 0, y: 0, width: scrollView.contentSize.width,
+                                    height: scrollView.contentSize.height)
+        denylistView.isEditable = true
+        denylistView.isRichText = false
+        denylistView.font = NSFont.systemFont(ofSize: 12)
+        denylistView.autoresizingMask = [.width]
+
+        scrollView.documentView = denylistView
+        content.addSubview(scrollView)
 
         // ── Save button ───────────────────────────────────────────────────────
         let saveBtn = NSButton(title: "Save", target: self, action: #selector(save))
@@ -93,7 +105,7 @@ final class SettingsWindowController: NSWindowController {
         hotkeyField.stringValue = hotKeyString(from: prefs.hotKey)
         rateSlider.floatValue   = prefs.ttsRate
         updateRateLabel()
-        denylistField.stringValue = prefs.deniedApps.joined(separator: ", ")
+        denylistView.string = prefs.deniedApps.joined(separator: ", ")
 
         let currentVoice = prefs.ttsVoiceIdentifier
         if !currentVoice.isEmpty, let item = voicePopUp.item(withTitle: voiceDisplayName(currentVoice)) {
@@ -109,7 +121,7 @@ final class SettingsWindowController: NSWindowController {
             prefs.ttsVoiceIdentifier = selected
         }
 
-        let rawList = denylistField.stringValue
+        let rawList = denylistView.string
             .components(separatedBy: ",")
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }

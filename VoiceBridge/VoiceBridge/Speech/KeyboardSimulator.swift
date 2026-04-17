@@ -20,17 +20,23 @@ final class KeyboardSimulator {
         let source = CGEventSource(stateID: .hidSystemState)
         let chars = Array(text)
 
-        DispatchQueue.global(qos: .userInteractive).async {
-            for char in chars {
-                self.injectCharacter(char, source: source)
-                if self.interKeyDelay > 0 {
-                    Thread.sleep(forTimeInterval: self.interKeyDelay)
-                }
-            }
-        }
+        scheduleCharacter(at: 0, chars: chars, source: source)
     }
 
     // MARK: Private helpers
+
+    private func scheduleCharacter(at index: Int, chars: [Character], source: CGEventSource?) {
+        guard index < chars.count else { return }
+
+        let delay = interKeyDelay * Double(index)
+        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + delay) {
+            self.injectCharacter(chars[index], source: source)
+            // Schedule remaining characters recursively to avoid blocking
+            if index + 1 < chars.count {
+                self.scheduleCharacter(at: index + 1, chars: chars, source: source)
+            }
+        }
+    }
 
     private func injectCharacter(_ char: Character, source: CGEventSource?) {
         // CGEvent requires a UTF-16 code unit array

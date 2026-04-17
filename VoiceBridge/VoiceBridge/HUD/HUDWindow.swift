@@ -100,14 +100,19 @@ final class HUDWindow: NSPanel {
 private extension UserPreferences {
     var defaults_hudOrigin: NSPoint? {
         get {
+            guard UserDefaults.standard.bool(forKey: "hudPositionSaved") else { return nil }
             let x = UserDefaults.standard.double(forKey: "hudOriginX")
             let y = UserDefaults.standard.double(forKey: "hudOriginY")
-            guard x != 0 || y != 0 else { return nil }
             return NSPoint(x: x, y: y)
         }
         set {
-            UserDefaults.standard.set(newValue?.x ?? 0, forKey: "hudOriginX")
-            UserDefaults.standard.set(newValue?.y ?? 0, forKey: "hudOriginY")
+            if let p = newValue {
+                UserDefaults.standard.set(true,  forKey: "hudPositionSaved")
+                UserDefaults.standard.set(p.x,   forKey: "hudOriginX")
+                UserDefaults.standard.set(p.y,   forKey: "hudOriginY")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "hudPositionSaved")
+            }
         }
     }
 }
