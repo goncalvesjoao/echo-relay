@@ -5,11 +5,11 @@
 <dict>
     <!-- App identity -->
     <key>CFBundleName</key>
-    <string>VoiceBridge</string>
+    <string>EchoRelay</string>
     <key>CFBundleDisplayName</key>
-    <string>VoiceBridge</string>
+    <string>EchoRelay</string>
     <key>CFBundleIdentifier</key>
-    <string>com.voicebridge.app</string>
+    <string>com.EchoRelay.app</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>
@@ -17,7 +17,7 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleExecutable</key>
-    <string>VoiceBridge</string>
+    <string>EchoRelay</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>NSPrincipalClass</key>
@@ -33,11 +33,11 @@
 
     <!-- Privacy usage descriptions (required for App Store / notarisation) -->
     <key>NSMicrophoneUsageDescription</key>
-    <string>VoiceBridge records your microphone to transcribe speech into the focused app.</string>
+    <string>EchoRelay records your microphone to transcribe speech into the focused app.</string>
     <key>NSSpeechRecognitionUsageDescription</key>
-    <string>VoiceBridge uses on-device speech recognition to convert your voice to text.</string>
+    <string>EchoRelay uses on-device speech recognition to convert your voice to text.</string>
     <key>NSAccessibilityUsageDescription</key>
-    <string>VoiceBridge accesses the content of the frontmost app to read AI responses aloud.</string>
+    <string>EchoRelay accesses the content of the frontmost app to read AI responses aloud.</string>
 
     <!-- Support Retina display -->
     <key>NSHighResolutionCapable</key>

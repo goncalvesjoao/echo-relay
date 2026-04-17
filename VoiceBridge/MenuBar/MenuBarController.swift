@@ -41,7 +41,7 @@ final class MenuBarController {
 
     private func setupButton() {
         guard let button = statusItem.button else { return }
-        button.toolTip = "VoiceBridge"
+        button.toolTip = "EchoRelay"
         updateIcon()
     }
 
@@ -80,7 +80,7 @@ final class MenuBarController {
 
         menu.addItem(.separator())
 
-        let quitItem = NSMenuItem(title: "Quit VoiceBridge",
+        let quitItem = NSMenuItem(title: "Quit EchoRelay",
                                   action: #selector(quitTapped),
                                   keyEquivalent: "q")
         quitItem.target = self

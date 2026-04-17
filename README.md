@@ -1,10 +1,10 @@
-# echo-relay — VoiceBridge
+# EchoRelay
 
 Hands-free voice bridge for AI agents — speak, type, and listen without touching the keyboard.
 
 ## What it does
 
-VoiceBridge is a macOS menu-bar app that:
+EchoRelay is a macOS menu-bar app that:
 
 1. **Listens** — press **Control+D** to start dictating. SFSpeechRecognizer transcribes your voice in real-time and types it into whatever app is focused.
 2. **Reads aloud** — monitors the frontmost app's accessibility tree; when new text appears in a content area (chat pane, terminal output, …) it reads it back via AVSpeechSynthesizer.
@@ -14,7 +14,7 @@ VoiceBridge is a macOS menu-bar app that:
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                    VoiceBridge                      │
+│                    EchoRelay                      │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  │
 │  │ SpeechInput │  │ AppMonitor  │  │ TTSEngine   │  │
 │  │ - SFSpeech  │  │ - AXUIElement│ │ - AVSpeech  │  │
@@ -54,27 +54,27 @@ VoiceBridge is a macOS menu-bar app that:
 brew install xcodegen
 
 # Generate the Xcode project
-cd VoiceBridge
+cd EchoRelay
 xcodegen generate
 
 # Open and build
-open VoiceBridge.xcodeproj
+open EchoRelay.xcodeproj
 ```
 
 Or build from the command line:
 
 ```bash
-cd VoiceBridge
+cd EchoRelay
 xcodegen generate
-xcodebuild -project VoiceBridge.xcodeproj \
-           -scheme VoiceBridge \
+xcodebuild -project EchoRelay.xcodeproj \
+           -scheme EchoRelay \
            -configuration Debug \
            build
 ```
 
 ## Permissions
 
-VoiceBridge requires three macOS privacy permissions (prompted on first use):
+EchoRelay requires three macOS privacy permissions (prompted on first use):
 
 | Permission | Purpose |
 |---|---|

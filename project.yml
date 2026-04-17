@@ -1,10 +1,10 @@
-name: VoiceBridge
+name: EchoRelay
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Global options
 # ─────────────────────────────────────────────────────────────────────────────
 options:
-  bundleIdPrefix: com.voicebridge
+  bundleIdPrefix: com.EchoRelay
   createIntermediateGroups: true
   groupSortPosition: top
   deploymentTarget:
@@ -23,13 +23,13 @@ settings:
 # Targets
 # ─────────────────────────────────────────────────────────────────────────────
 targets:
-  VoiceBridge:
+  EchoRelay:
     type: application
     platform: macOS
 
     # Source files (Info.plist excluded from compilation)
     sources:
-      - path: VoiceBridge
+      - path: EchoRelay
         excludes:
           - "Info.plist"
 
@@ -43,9 +43,9 @@ targets:
     # Build settings for this target
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.voicebridge.app
-        INFOPLIST_FILE: VoiceBridge/Info.plist
-        CODE_SIGN_ENTITLEMENTS: VoiceBridge.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: com.EchoRelay.app
+        INFOPLIST_FILE: EchoRelay/Info.plist
+        CODE_SIGN_ENTITLEMENTS: EchoRelay.entitlements
         # Use ad-hoc signing for local dev (no Apple Developer account needed)
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGNING_REQUIRED: "YES"

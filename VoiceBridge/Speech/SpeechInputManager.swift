@@ -28,7 +28,7 @@ final class SpeechInputManager: NSObject {
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-    private let queue = DispatchQueue(label: "com.voicebridge.speech", qos: .userInteractive)
+    private let queue = DispatchQueue(label: "com.EchoRelay.speech", qos: .userInteractive)
 
     // MARK: Public API
 

@@ -25,7 +25,7 @@ final class SettingsWindowController: NSWindowController {
             backing: .buffered,
             defer: false
         )
-        window.title = "VoiceBridge Settings"
+        window.title = "EchoRelay Settings"
         window.isReleasedWhenClosed = false
         self.init(window: window)
         buildUI()
