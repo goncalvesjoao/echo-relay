@@ -11,7 +11,7 @@ final class SpeechInputManager: NSObject {
 
     /// Called with each partial / final transcript string.
     var onTranscript: ((String, Bool) -> Void)?
-    /// Called when the recogniser state changes.
+    /// Called when the recognizer state changes.
     var onStateChange: ((SpeechInputState) -> Void)?
 
     // MARK: State

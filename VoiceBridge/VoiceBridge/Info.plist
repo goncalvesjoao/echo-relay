@@ -37,7 +37,7 @@
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>VoiceBridge uses on-device speech recognition to convert your voice to text.</string>
     <key>NSAccessibilityUsageDescription</key>
-    <string>VoiceBridge reads the content of the frontmost app so it can read AI responses aloud.</string>
+    <string>VoiceBridge accesses the content of the frontmost app to read AI responses aloud.</string>
 
     <!-- Support Retina display -->
     <key>NSHighResolutionCapable</key>
